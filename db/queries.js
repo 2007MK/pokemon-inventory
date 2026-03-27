@@ -14,6 +14,15 @@ async function getAllTypes() {
   return rows;
 }
 
+async function getSpecificType(type) {
+  const sql = `SELECT pokemons.*, types.name AS type
+  FROM pokemons
+  JOIN types ON pokemons.type_id = types.id
+  WHERE types.name LIKE $1`;
+  const { rows } = await pool.query(sql, [type]);
+  return rows;
+}
+
 async function getPokemon(name) {
   if (name) {
     // something
@@ -33,4 +42,4 @@ async function getCount() {
   (SELECT COUNT(*) from pokemons) as tot_pokes;`);
   return rows;
 }
-module.exports = { getAllTypes, getCount, getPokemon };
+module.exports = { getAllTypes, getCount, getPokemon, getSpecificType };
