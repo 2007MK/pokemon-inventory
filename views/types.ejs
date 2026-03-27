@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon Types</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <%{types.forEach(type => { %>
-        <h2><%= type.name %></h2>
+        <a href = "/types/<%= type.name %>">
+            <div class="home-box">
+                <h2><%= type.name %></h2>
+                <h3><%= type.count %></h3>
+            </div>
+        </a>
     <% })}%>
 </body>
 </html>
