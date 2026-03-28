@@ -23,6 +23,12 @@ async function getSpecificType(type) {
   return rows;
 }
 
+async function postNewType(type) {
+  const sql = `
+  INSERT INTO types (name) VALUES ($1)`;
+  await pool.query(sql, [type]);
+}
+
 async function getPokemon(name) {
   if (name) {
     // something
@@ -42,4 +48,10 @@ async function getCount() {
   (SELECT COUNT(*) from pokemons) as tot_pokes;`);
   return rows;
 }
-module.exports = { getAllTypes, getCount, getPokemon, getSpecificType };
+module.exports = {
+  getAllTypes,
+  getCount,
+  getPokemon,
+  getSpecificType,
+  postNewType,
+};

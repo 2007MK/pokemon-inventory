@@ -12,7 +12,19 @@ async function specificTypeGet(req, res) {
   res.render("specificType", { title: type, pokemons });
 }
 
+async function newTypeGet(req, res) {
+  res.render("newTypeForm");
+}
+
+async function newTypePost(req, res) {
+  const { type } = req.body;
+  await db.postNewType(type);
+  res.redirect("/types");
+}
+
 module.exports = {
   typesGet,
   specificTypeGet,
+  newTypeGet,
+  newTypePost,
 };
