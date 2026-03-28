@@ -4,10 +4,10 @@ async function getAllTypes() {
   // getting the number of pokemons in each type
 
   const sql = `
-  SELECT types.name, COUNT(pokemons.name)
+  SELECT types.name, types.id, COUNT(pokemons.name)
   FROM types 
   LEFT JOIN pokemons ON pokemons.type_id = types.id
-  GROUP BY types.name;
+  GROUP BY types.name, types.id;
   `;
 
   const { rows } = await pool.query(sql);
@@ -29,6 +29,12 @@ async function postNewType(type) {
   await pool.query(sql, [type]);
 }
 
+async function postNewPokemon(pokemon) {
+  const sql = `
+  INSERT INTO pokemons(name, type_id) VALUES ($1, $2);`;
+  await pool.query(sql, [pokemon.pokemon_name, Number(pokemon.pokemon_type)]);
+}
+
 async function getPokemon(name) {
   if (name) {
     // something
@@ -37,7 +43,7 @@ async function getPokemon(name) {
   const { rows } = await pool.query(`
     SELECT pokemons.name AS pokemon_name, types.name AS type
     FROM pokemons
-     JOIN types ON types.id = pokemons.type_id
+    LEFT JOIN types ON types.id = pokemons.type_id
     `);
   return rows;
 }
@@ -54,4 +60,5 @@ module.exports = {
   getPokemon,
   getSpecificType,
   postNewType,
+  postNewPokemon,
 };

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Pokemon</title>
+  </head>
+  <body>
+    <form action="/pokemons/new" method="post">
+      <label for="pokemon_name">Pokemon Name:</label>
+      <input type="text" id="pokemon_name" name="pokemon_name" required />
+      <select name="pokemon_type" id="pokemon_type">
+        <% console.log(types) %>
+        <% types.forEach(type => { %>
+          <option value="<%= type.id %>"><%= type.name %></option>
+        <% }) %>
+      </select>
+      <button type="submit">Add Pokemon</button>
+    </form>
+  </body>
+</html>
