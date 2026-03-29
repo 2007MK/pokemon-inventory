@@ -23,6 +23,14 @@ async function getSpecificType(type) {
   return rows;
 }
 
+async function editSpecificType({ newType, oldType }) {
+  const sql = `
+  UPDATE types
+  SET name = $1
+  WHERE name = $2`;
+  await pool.query(sql, [newType, oldType]);
+}
+
 async function postNewType(type) {
   const sql = `
   INSERT INTO types (name) VALUES ($1)`;
@@ -61,4 +69,5 @@ module.exports = {
   getSpecificType,
   postNewType,
   postNewPokemon,
+  editSpecificType,
 };

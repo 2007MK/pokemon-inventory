@@ -2,14 +2,25 @@ const db = require("../db/queries");
 
 async function typesGet(req, res) {
   const types = await db.getAllTypes();
-  console.log(types);
   res.render("types", { types });
 }
 
 async function specificTypeGet(req, res) {
   const { type } = req.params;
   const pokemons = await db.getSpecificType(type);
-  res.render("specificType", { title: type, pokemons });
+  res.render("specificType", { type, pokemons });
+}
+
+async function specificTypeEditGet(req, res) {
+  const { type } = req.params;
+  res.render("updateType", { type });
+}
+
+async function specificTypeEditPost(req, res) {
+  const newType = req.body.type;
+  const oldType = req.params.type;
+  await db.editSpecificType({ newType, oldType });
+  res.redirect("/types");
 }
 
 async function newTypeGet(req, res) {
@@ -27,4 +38,6 @@ module.exports = {
   specificTypeGet,
   newTypeGet,
   newTypePost,
+  specificTypeEditGet,
+  specificTypeEditPost,
 };
