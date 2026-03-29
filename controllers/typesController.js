@@ -23,6 +23,16 @@ async function specificTypeEditPost(req, res) {
   res.redirect("/types");
 }
 
+async function deleteType(req, res) {
+  const { type } = req.params;
+  try {
+    await db.deleteType(type);
+    res.redirect("/types");
+  } catch (error) {
+    res.status(404).send(error.message);
+  }
+}
+
 async function newTypeGet(req, res) {
   res.render("newTypeForm");
 }
@@ -40,4 +50,5 @@ module.exports = {
   newTypePost,
   specificTypeEditGet,
   specificTypeEditPost,
+  deleteType,
 };

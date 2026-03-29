@@ -7,8 +7,12 @@
   </head>
   <body>
     <h1 style="display: inline;"><%= type %> pokemons</h1>
-    <a href="/types/<%= type %>/edit">Edit</a>
-    <a href="">Delete</a>
+    <a href="/types/<%= type %>/edit">
+    <button>Edit</button>
+    </a>
+    <form action="/types/<%= type %>/delete" method="POST" style="display:inline;">
+    <button type="submit">Delete</button>
+    </form>
 
     <% if(pokemons.length === 0) { %>
         <p>No Pokemons Found!</p> 

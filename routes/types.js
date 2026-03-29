@@ -7,6 +7,7 @@ const {
   newTypePost,
   specificTypeEditPost,
   specificTypeEditGet,
+  deleteType,
 } = require("../controllers/typesController");
 
 const typesRouter = Router();
@@ -17,5 +18,6 @@ typesRouter.post("/new", newTypePost);
 typesRouter.get("/:type", specificTypeGet);
 typesRouter.get("/:type/edit", specificTypeEditGet);
 typesRouter.post("/:type/edit", specificTypeEditPost);
+typesRouter.post("/:type/delete", deleteType);
 
 module.exports = typesRouter;

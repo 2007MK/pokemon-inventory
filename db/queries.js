@@ -62,6 +62,23 @@ async function getCount() {
   (SELECT COUNT(*) from pokemons) as tot_pokes;`);
   return rows;
 }
+
+async function deleteType(type) {
+  const check = await pool.query(
+    `
+    SELECT COUNT(*) FROM pokemons WHERE type_id = (SELECT id FROM types WHERE name = $1)`,
+    [type],
+  );
+
+  if (Number(check.rows[0].count > 0)) {
+    throw new Error(
+      "Type is still in Use. Delete all the pokemons which use this type.",
+    );
+  }
+
+  await pool.query(`DELETE FROM types WHERE name = $1`, [type]);
+}
+
 module.exports = {
   getAllTypes,
   getCount,
@@ -70,4 +87,5 @@ module.exports = {
   postNewType,
   postNewPokemon,
   editSpecificType,
+  deleteType,
 };
