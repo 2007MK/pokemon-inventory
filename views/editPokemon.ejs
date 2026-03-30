@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/forms.css" />
     <title>Edit Pokemon</title>
   </head>
   <body>
@@ -15,7 +16,7 @@
         value="<%= pokemon[0].name %>"
         required
       />
-      <label for="type"></label>
+      <label for="type">Pokemon Type: </label>
       <Select name="type_id" id="type_id" value="<%= pokemon.type %>">
         <%types.forEach(type => {%>
             <option value = "<%= type.id %>"><%= type.name %></option> 

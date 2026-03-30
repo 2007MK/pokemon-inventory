@@ -3,14 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
+    <title><%= pokemon[0].name %></title>
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
+    <%-include('partials/navbar') %>
     <a href="/pokemons/<%= pokemon[0].id%>/edit">
-      <button>Edit</button>
+      <button class="edit-btn">Edit</button>
     </a>
     <form action="/pokemons/<%= pokemon[0].id%>/delete" method="post">
-      <button>Delete</button>
+      <button class="delete-btn">Delete</button>
     </form>
     <h2>Name : <%= pokemon[0].name %></h2>
     <h2>Type : <%= pokemon[0].type %></h2>

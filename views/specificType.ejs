@@ -4,17 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <title><%= type %> Pokemons</title>
   </head>
   <body>
         <%- include('partials/navbar') %>
-    <h1 class="type-heading" style="display: inline;"><%= type %> pokemons</h1>
-    <a href="/types/<%= type %>/edit">
-    <button>Edit</button>
-    </a>
-    <form action="/types/<%= type %>/delete" method="POST" style="display:inline;">
-    <button type="submit">Delete</button>
-    </form>
+    <div class="type-header">
+      <h1 style="display: inline;"><%= type %> pokemons</h1>
+      <a href="/types/<%= type %>/edit">
+      <button class="edit-btn">
+        <span class="material-symbols-outlined">edit</span>Edit</button>
+      </a>
+      <form action="/types/<%= type %>/delete" method="POST" style="display:inline;">
+      <button class="delete-btn" type="submit">
+        <span class="material-symbols-outlined">delete</span>Delete</button>
+      </form>
+    </div>
     <% if(pokemons.length === 0) { %>
         <p style="display:flex; justify-content: center; align-items: center ;">No Pokemons Found!</p> 
     <%} else {%>

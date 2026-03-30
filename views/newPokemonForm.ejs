@@ -3,17 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/forms.css">
     <title>Add New Pokemon</title>
   </head>
   <body>
     <form action="/pokemons/new" method="post">
       <label for="name">Pokemon Name:</label>
       <input type="text" id="name" name="name" required />
-      <select name="type" id="type">
-        <% types.forEach(type => { %>
-          <option value="<%= type.id %>"><%= type.name %></option>
-        <% }) %>
-      </select>
+      <label for="type">Pokemon Type: </label>
+        <select name="type" id="type">
+          <% types.forEach(type => { %>
+            <option value="<%= type.id %>"><%= type.name %></option>
+          <% }) %>
+        </select>
       <button type="submit">Add Pokemon</button>
     </form>
   </body>
