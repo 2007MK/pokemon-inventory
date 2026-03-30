@@ -43,13 +43,21 @@ async function postNewPokemon(pokemon) {
   await pool.query(sql, [pokemon.pokemon_name, Number(pokemon.pokemon_type)]);
 }
 
-async function getPokemon(name) {
-  if (name) {
-    // something
+async function getPokemon(id) {
+  if (id) {
+    console.log(id);
+    const { rows } = await pool.query(
+      `SELECT pokemons.name AS pokemon_name, pokemons.id, types.name AS type
+    FROM pokemons
+    LEFT JOIN types ON types.id = pokemons.type_id
+    WHERE pokemons.id = $1`,
+      [id],
+    );
+    return rows;
   }
 
   const { rows } = await pool.query(`
-    SELECT pokemons.name AS pokemon_name, types.name AS type
+    SELECT pokemons.name AS pokemon_name, pokemons.id, types.name AS type
     FROM pokemons
     LEFT JOIN types ON types.id = pokemons.type_id
     `);
@@ -79,6 +87,16 @@ async function deleteType(type) {
   await pool.query(`DELETE FROM types WHERE name = $1`, [type]);
 }
 
+async function editPokemon({ id, newInfo }) {
+  const sql = `
+  UPDATE pokemons
+  SET name = $1,
+      type_id = $2
+  WHERE id = $3`;
+
+  await pool.query(sql, [newInfo.pokemon_name, newInfo.type_id, id]);
+}
+
 module.exports = {
   getAllTypes,
   getCount,
@@ -88,4 +106,5 @@ module.exports = {
   postNewPokemon,
   editSpecificType,
   deleteType,
+  editPokemon,
 };

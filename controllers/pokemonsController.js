@@ -12,9 +12,36 @@ async function newPokemonGet(req, res) {
 
 async function newPokemonPost(req, res) {
   const { pokemon_name, pokemon_type } = req.body;
-  console.log(pokemon_type);
   await db.postNewPokemon({ pokemon_name, pokemon_type });
   res.redirect("/pokemons");
 }
 
-module.exports = { getAllPokemons, newPokemonGet, newPokemonPost };
+async function getPokemon(req, res) {
+  const { id } = req.params;
+  const pokemon = await db.getPokemon(id);
+  res.render("specificPokemon", { pokemon });
+}
+
+async function editPokemonPost(req, res) {
+  const { id } = req.params;
+  const { pokemon_name, type_id } = req.body;
+  const newInfo = { pokemon_name, type_id };
+  await db.editPokemon({ id, newInfo });
+  res.redirect(`/pokemons/${id}`);
+}
+
+async function editPokemonGet(req, res) {
+  const { id } = req.params;
+  const pokemon = await db.getPokemon(id);
+  const types = await db.getAllTypes();
+  res.render("editPokemon", { pokemon, types });
+}
+
+module.exports = {
+  getAllPokemons,
+  newPokemonGet,
+  newPokemonPost,
+  getPokemon,
+  editPokemonPost,
+  editPokemonGet,
+};

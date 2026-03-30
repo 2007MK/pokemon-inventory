@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Pokemon</title>
+  </head>
+  <body>
+    <form action="/pokemons/<%= pokemon[0].id%>/edit" method="post">
+      <label for="pokemon_name">Pokemon Name:</label>
+      <input
+        type="text"
+        id="pokemon_name"
+        name="pokemon_name"
+        value="<%= pokemon[0].pokemon_name %>"
+        required
+      />
+      <label for="type"></label>
+      <Select name="type_id" id="type_id" value="<%= pokemon.type %>">
+        <%types.forEach(type => {%>
+            <option value = "<%= type.id %>"><%= type.name %></option> 
+        <%})%>
+      </Select>
+      <button type="submit">Update Pokemon</button>
+    </form>
+  </body>
+</html>

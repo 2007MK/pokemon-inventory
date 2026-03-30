@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <a href="/pokemons/<%= pokemon[0].id%>/edit">
+      <button>Edit</button>
+    </a>
+    <form action="/pokemons/<%= pokemon[0].id%>/delete" method="post">
+      <button>Delete</button>
+    </form>
+    <h2>Name : <%= pokemon[0].pokemon_name %></h2>
+    <h2>Type : <%= pokemon[0].type %></h2>
+  </body>
+</html>
