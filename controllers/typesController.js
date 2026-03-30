@@ -13,7 +13,7 @@ async function specificTypeGet(req, res) {
 
 async function specificTypeEditGet(req, res) {
   const { type } = req.params;
-  res.render("updateType", { type });
+  res.render("editType", { type });
 }
 
 async function specificTypeEditPost(req, res) {
