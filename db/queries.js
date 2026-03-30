@@ -39,8 +39,8 @@ async function postNewType(type) {
 
 async function postNewPokemon(pokemon) {
   const sql = `
-  INSERT INTO pokemons(name, type_id) VALUES ($1, $2);`;
-  await pool.query(sql, [pokemon.name, Number(pokemon.type)]);
+  INSERT INTO pokemons(name, type_id, image) VALUES ($1, $2, $3);`;
+  await pool.query(sql, [pokemon.name, Number(pokemon.type), pokemon.image]);
 }
 
 async function getPokemon(id) {
@@ -90,10 +90,11 @@ async function editPokemon({ id, newInfo }) {
   const sql = `
   UPDATE pokemons
   SET name = $1,
-      type_id = $2
-  WHERE id = $3`;
+      type_id = $2,
+      image = $3
+  WHERE id = $4`;
 
-  await pool.query(sql, [newInfo.name, newInfo.type_id, id]);
+  await pool.query(sql, [newInfo.name, newInfo.type_id, newInfo.image, id]);
 }
 
 async function deletePokemon(id) {
