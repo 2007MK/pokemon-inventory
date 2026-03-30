@@ -4,7 +4,7 @@
 <div class="types-categories">
     <div class="types-header"> 
       <h2>Type Categories</h2>
-        <% if(!(max === types.length)) {%>
+        <% if(max !== types.length) {%>
             <a href="/types">
                 View All Types
                 <span class="material-symbols-outlined">east</span>
@@ -15,7 +15,7 @@
     </div>
     <div class="card-grid">
         <!-- loop is used so that to choose the number of cards to be displayed on the home page. can be changed by passing a different value for max when including this partial. -->
-        <% for(let i = 0; i < max; i++) { %> 
+        <% for(let i = 0; i < Math.min(max, types.length); i++) { %> 
             <% const type = types[i]; %>
           <div class="card">
             <img src="/types/<%= type.name%>.svg" alt="">

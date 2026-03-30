@@ -3,10 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css">
     <title><%= type %> Pokemons</title>
   </head>
   <body>
-    <h1 style="display: inline;"><%= type %> pokemons</h1>
+        <%- include('partials/navbar') %>
+    <h1 class="type-heading" style="display: inline;"><%= type %> pokemons</h1>
     <a href="/types/<%= type %>/edit">
     <button>Edit</button>
     </a>
@@ -14,13 +16,14 @@
     <button type="submit">Delete</button>
     </form>
     <% if(pokemons.length === 0) { %>
-        <p>No Pokemons Found!</p> 
+        <p style="display:flex; justify-content: center; align-items: center ;">No Pokemons Found!</p> 
     <%} else {%>
-        <ul>
+
+      <div class="pokemons-grid">
             <% pokemons.forEach(pokemon => { %>
-            <li><%= pokemon.name %></li>
+                <%- include('partials/pokemonsCardGrid', { pokemon }) %>
             <% }) %>
-        </ul>
+       </div>
     <%}%>
   </body>
 </html>

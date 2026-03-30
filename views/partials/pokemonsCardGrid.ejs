@@ -1,9 +1,9 @@
 <a href="/pokemons/<%= pokemon.id %>">
   <div class="pokemon-card">
     <div class="top">
-      <img src="<%= pokemon.image %>" alt="" />
+      <img class="poke-img" src="<%= pokemon.image %>" alt="" />
     </div>
+    <h3><%= pokemon.name %></h3>
     <img class="poke-type" src="/types/<%= pokemon.type%>.svg" />
-    <h2><%= pokemon.name %></h2>
   </div>
 </a>
