@@ -113,6 +113,9 @@ async function main() {
   }
   const client = new Client({
     connectionString: url,
+    ssl: {
+      rejectUnauthorized: false,
+    },
   });
   console.log("seeding...");
   await client.connect();
