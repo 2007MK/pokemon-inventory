@@ -15,7 +15,7 @@ async function getAllTypes() {
 }
 
 async function getSpecificType(type) {
-  const sql = `SELECT pokemons.*, types.name AS type
+  const sql = `SELECT pokemons.name, pokemons.id, pokemons.type_id, types.name AS type
   FROM pokemons
   JOIN types ON pokemons.type_id = types.id
   WHERE types.name LIKE $1`;
@@ -40,14 +40,13 @@ async function postNewType(type) {
 async function postNewPokemon(pokemon) {
   const sql = `
   INSERT INTO pokemons(name, type_id) VALUES ($1, $2);`;
-  await pool.query(sql, [pokemon.pokemon_name, Number(pokemon.pokemon_type)]);
+  await pool.query(sql, [pokemon.name, Number(pokemon.type)]);
 }
 
 async function getPokemon(id) {
   if (id) {
-    console.log(id);
     const { rows } = await pool.query(
-      `SELECT pokemons.name AS pokemon_name, pokemons.id, types.name AS type
+      `SELECT pokemons.name AS name, pokemons.id, types.name AS type
     FROM pokemons
     LEFT JOIN types ON types.id = pokemons.type_id
     WHERE pokemons.id = $1`,
@@ -57,7 +56,7 @@ async function getPokemon(id) {
   }
 
   const { rows } = await pool.query(`
-    SELECT pokemons.name AS pokemon_name, pokemons.id, types.name AS type
+    SELECT pokemons.name AS name, pokemons.id, types.name AS type
     FROM pokemons
     LEFT JOIN types ON types.id = pokemons.type_id
     `);
@@ -94,7 +93,7 @@ async function editPokemon({ id, newInfo }) {
       type_id = $2
   WHERE id = $3`;
 
-  await pool.query(sql, [newInfo.pokemon_name, newInfo.type_id, id]);
+  await pool.query(sql, [newInfo.name, newInfo.type_id, id]);
 }
 
 async function deletePokemon(id) {

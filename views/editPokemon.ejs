@@ -7,12 +7,12 @@
   </head>
   <body>
     <form action="/pokemons/<%= pokemon[0].id%>/edit" method="post">
-      <label for="pokemon_name">Pokemon Name:</label>
+      <label for="name">Pokemon Name:</label>
       <input
         type="text"
-        id="pokemon_name"
-        name="pokemon_name"
-        value="<%= pokemon[0].pokemon_name %>"
+        id="name"
+        name="name"
+        value="<%= pokemon[0].name %>"
         required
       />
       <label for="type"></label>

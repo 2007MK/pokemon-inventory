@@ -11,8 +11,8 @@ async function newPokemonGet(req, res) {
 }
 
 async function newPokemonPost(req, res) {
-  const { pokemon_name, pokemon_type } = req.body;
-  await db.postNewPokemon({ pokemon_name, pokemon_type });
+  const { name, type } = req.body;
+  await db.postNewPokemon({ name, type });
   res.redirect("/pokemons");
 }
 
@@ -24,8 +24,8 @@ async function getPokemon(req, res) {
 
 async function editPokemonPost(req, res) {
   const { id } = req.params;
-  const { pokemon_name, type_id } = req.body;
-  const newInfo = { pokemon_name, type_id };
+  const { name, type_id } = req.body;
+  const newInfo = { name, type_id };
   await db.editPokemon({ id, newInfo });
   res.redirect(`/pokemons/${id}`);
 }
