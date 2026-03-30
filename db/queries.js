@@ -97,6 +97,14 @@ async function editPokemon({ id, newInfo }) {
   await pool.query(sql, [newInfo.pokemon_name, newInfo.type_id, id]);
 }
 
+async function deletePokemon(id) {
+  await pool.query(
+    `DELETE from pokemons
+    WHERE id = $1`,
+    [id],
+  );
+}
+
 module.exports = {
   getAllTypes,
   getCount,
@@ -107,4 +115,5 @@ module.exports = {
   editSpecificType,
   deleteType,
   editPokemon,
+  deletePokemon,
 };

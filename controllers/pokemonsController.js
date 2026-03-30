@@ -37,6 +37,12 @@ async function editPokemonGet(req, res) {
   res.render("editPokemon", { pokemon, types });
 }
 
+async function deletePokemon(req, res) {
+  const { id } = req.params;
+  await db.deletePokemon(id);
+  res.redirect("/pokemons");
+}
+
 module.exports = {
   getAllPokemons,
   newPokemonGet,
@@ -44,4 +50,5 @@ module.exports = {
   getPokemon,
   editPokemonPost,
   editPokemonGet,
+  deletePokemon,
 };
