@@ -4,21 +4,52 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=east" />
     <title>Home</title>
   </head>
   <body>
-    <h1>Pokemon Inventory</h1>
-    <a href="/types">
-      <div class="home-box">
-        <h4>Types</h4>
-        <p><%=tot_types%></p>
+    <%- include('partials/navbar', {links: links}) %>
+    <div class="hero">
+      <div class="hero-text">
+        <div class="hero-heading">
+          <h1>Your Pokedex Inventory <span>Managed.</span></h1>
+        </div>
+        <div class="hero-para">
+          <p>Keep and manage all your pokemons in one place.</p>
+        </div>
       </div>
-    </a>
-    <a href="/pokemons">
-      <div class="home-box">
-        <h4>Pokemons</h4>
-        <p><%=tot_pokes%></p>
+      <img class="hero-img" src="/hero.png" alt="hero">
+    </div>
+    <div class="stats">
+      <%stats.forEach(stat => {%>
+        <div class="stats-box">
+          <h2><%= stat.value %></h2>
+          <p><%= stat.title %></p>
+        </div>
+      <%})%>
+    </div>
+
+    <div class="types-categories">
+    <div class="types-header"> 
+      <h2>Type Categories</h2>
+      <a href="/types">
+        View All Types
+        <span class="material-symbols-outlined">east</span>
+      </a>
+    </div>
+      
+      <div class="card-grid">
+        <%types.forEach(type => { %>
+          <div class="card">
+            <img src="/types/<%= type.name%>.svg" alt="">
+            <div class="card-info">
+              <h3 class="card-title"><%= type.name %></h3>
+              <h4 class="card-subtitle"><%= type.count %> Pokemon Collected</h4>
+            </div>
+           <a href="/types/<%=type.name%>">View Pokemons</a>
+          </div>
+        <% })%>
       </div>
-    </a>
   </body>
-</html>
+  </html>
+  
