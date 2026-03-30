@@ -4,11 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=east" />
     <title>Home</title>
   </head>
   <body>
-    <%- include('partials/navbar', {links: links}) %>
+    <%- include('partials/navbar') %>
     <div class="hero">
       <div class="hero-text">
         <div class="hero-heading">
@@ -28,28 +27,7 @@
         </div>
       <%})%>
     </div>
-
-    <div class="types-categories">
-    <div class="types-header"> 
-      <h2>Type Categories</h2>
-      <a href="/types">
-        View All Types
-        <span class="material-symbols-outlined">east</span>
-      </a>
-    </div>
-      
-      <div class="card-grid">
-        <%types.forEach(type => { %>
-          <div class="card">
-            <img src="/types/<%= type.name%>.svg" alt="">
-            <div class="card-info">
-              <h3 class="card-title"><%= type.name %></h3>
-              <h4 class="card-subtitle"><%= type.count %> Pokemon Collected</h4>
-            </div>
-           <a href="/types/<%=type.name%>">View Pokemons</a>
-          </div>
-        <% })%>
-      </div>
+    <%- include('partials/typesCardGrid', {types: types, max: 4, addNew: false}) %>
   </body>
   </html>
   

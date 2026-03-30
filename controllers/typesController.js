@@ -2,7 +2,7 @@ const db = require("../db/queries");
 
 async function typesGet(req, res) {
   const types = await db.getAllTypes();
-  res.render("types", { types });
+  res.render("types", { types, max: types.length, addNew: true });
 }
 
 async function specificTypeGet(req, res) {

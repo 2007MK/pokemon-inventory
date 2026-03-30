@@ -1,0 +1,36 @@
+<head>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<div class="types-categories">
+    <div class="types-header"> 
+      <h2>Type Categories</h2>
+        <% if(!(max === types.length)) {%>
+            <a href="/types">
+                View All Types
+                <span class="material-symbols-outlined">east</span>
+            </a>
+        <%}%>
+      
+
+    </div>
+    <div class="card-grid">
+        <!-- loop is used so that to choose the number of cards to be displayed on the home page. can be changed by passing a different value for max when including this partial. -->
+        <% for(let i = 0; i < max; i++) { %> 
+            <% const type = types[i]; %>
+          <div class="card">
+            <img src="/types/<%= type.name%>.svg" alt="">
+            <div class="card-info">
+              <h3 class="card-title"><%= type.name %></h3>
+              <h4 class="card-subtitle"><%= type.count %> Pokemon Collected</h4>
+            </div>
+           <a href="/types/<%=type.name%>">View Pokemons</a>
+          </div>
+        <% } %>
+
+    <% if(addNew) { %>
+        <div class="card add-new">
+          <a href="/types/new"><span class="material-symbols-outlined">add_circle</span></a>
+        </div>
+    <% } %>
+    </div>
+    </div>

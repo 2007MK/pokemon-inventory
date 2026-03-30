@@ -1,11 +1,5 @@
 const db = require("../db/queries");
 
-const links = [
-  { href: "/", text: "Home" },
-  { href: "/types", text: "Types" },
-  { href: "/pokemons", text: "Pokemons" },
-];
-
 const stats = [
   { title: "Total Pokemons", value: "151" },
   { title: "Total Types", value: "12" },
@@ -15,7 +9,7 @@ const stats = [
 
 async function count(req, res) {
   const types = await db.getAllTypes();
-  res.render("index", { types, links, stats });
+  res.render("index", { types, stats });
 }
 
 module.exports = { count };

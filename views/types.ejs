@@ -4,17 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon Types</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <%{types.forEach(type => { %>
-        <a href = "/types/<%= type.name %>">
-            <div class="home-box">
-                <h2><%= type.name %></h2>
-                <h3><%= type.count %></h3>
-            </div>
-        </a>
-    <% })}%>
-    <a href="/types/new"><div>Add New Type</div></a>
+    <%- include('partials/navbar') %>
+    <%- include('partials/typesCardGrid', {types}) %>
 </body>
 </html>

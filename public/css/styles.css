@@ -132,7 +132,7 @@ h1 span {
 .card-grid {
   background-color: var(--neutral);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
 }
 
@@ -173,4 +173,18 @@ h1 span {
   border: none;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   cursor: pointer;
+}
+
+.add-new {
+  border: 3px dashed red;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-new a,
+.add-new span {
+  background-color: transparent;
+  color: var(--primary);
+  box-shadow: none;
+  font-size: 60px;
 }
